@@ -12,7 +12,7 @@ const updateConfig = (key, value) => {
 // 重载配置信息
 const reloadConfigInfo = async () => {
   if (strapi) {
-    config = await loadConfig(strapi)
+    let config = await loadConfig(strapi)
     _.merge(strapi.config, config)
   }
 }

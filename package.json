@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-ctrip-apollo",
-  "version": "3.0.0-beta.18.8",
+  "version": "3.0.0-beta.18.9",
   "description": "This is the plugin using for ctrip apollo to manager strapi application configuration.",
   "strapi": {
     "name": "ctrip Apollo",
