@@ -1,0 +1,36 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/reload",
+      "handler": "CtripApollo.reload",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/environments",
+      "handler": "CtripApollo.getEnvironments",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/settings/:environment",
+      "handler": "CtripApollo.getSettings",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/settings/:environment",
+      "handler": "CtripApollo.updateSettings",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

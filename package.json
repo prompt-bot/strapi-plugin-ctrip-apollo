@@ -1,0 +1,41 @@
+{
+  "name": "strapi-plugin-ctrip-apollo",
+  "version": "0.0.1",
+  "description": "This is the plugin using for ctrip apollo to manager strapi application configuration.",
+  "strapi": {
+    "name": "ctrip Apollo",
+    "icon": "plug",
+    "description": "ctrip-apollo.plugin.description"
+  },
+  "dependencies": {
+    "ctrip-apollo": "^4.4.3"
+  },
+  "author": {
+    "name": "A Strapi developer",
+    "email": "hushuang123a@gmail.com",
+    "url": "https://github.com/ntfs32/strapi-plugin-ctrip-apollo"
+  },
+  "maintainers": [
+    {
+      "name": "plugin owner",
+      "email": "hushuang123a@gmail.com",
+      "url": "https://github.com/ntfs32"
+    }
+  ],
+  "repository": "https://github.com/ntfs32/strapi-plugin-ctrip-apollo.git",
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "strapi",
+    "plugins",
+    "ctrip",
+    "apollo",
+    "strapi-plugin-ctrip-apollo",
+    "ctrip-apollo",
+    "config",
+    "hotReload"
+  ]
+}

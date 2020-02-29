@@ -1,0 +1,15 @@
+{
+  "ConfigPage.title": "阿波罗服务器配置",
+  "ConfigPage.description": "配置携程Apollo服务器信息",
+  "HomePage.title": "配置管理",
+  "HomePage.description": "查看管理当前应用配置信息",
+  "HomePage.InputSearch.placeholder": "搜索配置..",
+  "HomePage.Button.reload": "重启应用",
+  "HomePage.Button.config": "配置",
+  "plugin.description.long": "使用携程Apollo管理strapi配置",
+  "plugin.description.short": "使用携程Apollo管理strapi配置",
+  "appId": "应用ID",
+  "cluster": "集群名称",
+  "host": "服务地址",
+  "namespace": "命名空间"
+}
