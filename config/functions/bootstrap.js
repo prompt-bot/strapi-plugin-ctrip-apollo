@@ -1,25 +1,26 @@
 'use strict';
 
+const { loadConfig } = require('strapi/lib/core')
 const apollo = require('ctrip-apollo');
 const _ = require('lodash');
-const { loadConfig } =require('strapi/lib/core')
 
+// 更新配置信息
 const updateConfig = (key, value) => {
+
+  strapi.config.set(key, value)
   key = key.replace(/\./g, '_').toUpperCase()
   process.env[key] = value
+
+  strapi.log.info(`Plugin: [ctrip Apollo] update process.env.${key} = ${value}`)
 }
 
 // 重载配置信息
-const reloadConfigInfo = async () => {
-  if (strapi) {
+const reloadConfigInfo = async (boot = false) => {
     let config = await loadConfig(strapi)
     _.merge(strapi.config, config)
-  }
 }
 
-module.exports = async (whitStrapiCore = false) => {
-  // strapi.log.info('Plugin: [ctrip Apollo] loading...')
-
+module.exports = async () => {
   let config = await strapi
     .store({
       environment: strapi.config.environment,
@@ -29,6 +30,7 @@ module.exports = async (whitStrapiCore = false) => {
     .get({ key: 'config' })
 
   if (!config) {
+    strapi.log.error('Plugin: [ctrip Apollo]  can`t found apollo config, please config in admin or preset environment.')
     return
   }
 
@@ -42,7 +44,7 @@ module.exports = async (whitStrapiCore = false) => {
     oldValue,
     newValue
   }) => {
-    strapi.log.info(`apollo key update: %s: %s => %s`, key, oldValue, newValue)
+    strapi.log.info(`Plugin: [ctrip Apollo] received update: %s: %s => %s`, key, oldValue, newValue)
     updateConfig(key, newValue)
     await reloadConfigInfo()
   })
@@ -51,7 +53,7 @@ module.exports = async (whitStrapiCore = false) => {
     key,
     value
   }) => {
-    strapi.log.info(`apollo key add: %s: %s`, key, value)
+    strapi.log.info(`Plugin: [ctrip Apollo] received add: %s: %s`, key, value)
     updateConfig(key, value)
     await reloadConfigInfo()
   })
@@ -60,20 +62,22 @@ module.exports = async (whitStrapiCore = false) => {
     key,
     value
   }) => {
-    strapi.log.info(`apollo key delete: %s: %s`, key, value)
+    strapi.log.info(`Plugin: [ctrip Apollo] received delete: %s: %s`, key, value)
     updateConfig(key)
     await reloadConfigInfo()
   })
 
   ns.on('fetch-error', (err) => {
-    strapi.log.error(`apollo fetch-error: %s`, err.message)
+    strapi.log.error(`Plugin: [ctrip Apollo]  fetch-error: %s`, err.message)
   })
 
   await ns.ready()
-  strapi.plugins['ctrip-apollo'].config.ns = ns 
+  strapi.plugins['ctrip-apollo'].config.ns = ns
   _.map(ns['_config'], (value, key) => {
     updateConfig(key, value)
   })
-  await reloadConfigInfo()
+  strapi.log.info(' ')
+  await reloadConfigInfo(true)
+
   strapi.log.info('Plugin: [ctrip Apollo] load ready.')
 };

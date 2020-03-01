@@ -122,6 +122,14 @@ export class HomePage extends React.Component {
     },
   ];
 
+  onReload = () => {
+
+  }
+
+  redirectConfig = () => {
+    this.props.history.push(`/plugins/${pluginId}/configurations/development`)
+  }
+
   render() {
     const { formatMessage } = this.context;
 
@@ -141,19 +149,20 @@ export class HomePage extends React.Component {
               })}
             />
           </Wrapper>
+          wait for config managent develop
           <EntriesWrapper>
             <EntriesNumber number={this.props.entriesNumber} />
             <div style={{ color: '#787E8F', fontSize: '13px' }}>
-              <Button
+              {/* <Button
                 color='delete'
                 style={{ marginRight: '11px' }}
-                onClick = { this.props.onReload }
+                onClick = { this.onReload }
                 icon = { <FontAwesomeIcon icon={redo} /> }
                 label = { this.context.formatMessage({ id: 'ctrip-apollo.HomePage.Button.reload' }) }
-              />
+              /> */}
               <Button
                 color='success'
-                onClick = { this.props.Redirect }
+                onClick = { this.redirectConfig }
                 icon = { <FontAwesomeIcon icon={redo} /> }
                 label = { this.context.formatMessage({ id: 'ctrip-apollo.HomePage.Button.config' }) }
               />
