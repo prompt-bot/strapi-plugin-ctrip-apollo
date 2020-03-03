@@ -40,7 +40,6 @@ export function* submit() {
     yield put(submitSucceeded(body));
   } catch (err) {
     strapi.notification.error('notification.error');
-    // TODO handle error PUT
   }
 }
 

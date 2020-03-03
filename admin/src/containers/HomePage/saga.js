@@ -121,9 +121,7 @@ export function* defaultSaga() {
   yield fork(takeLatest, DELETE_DATA, dataDelete);
   yield fork(takeLatest, ON_DROP, uploadFiles);
   yield fork(takeLatest, ON_SEARCH, search);
-
   yield fork(takeLatest, GET_DATA, dataGet);
-  // TODO: Fix router (Other PR)
   // const loadDataWatcher = yield fork(takeLatest, GET_DATA, dataGet);
 
   // yield take(LOCATION_CHANGE);
